@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FeriontAPI - Dashboard</title>
+  <link rel="stylesheet" href="/css/dash.css">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">FeriontAPI</div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <a href="/">
+      <i style="margin-right: 8px; vertical-align: middle;" data-feather="home"></i>Home
+    </a>
+    <a href="/docs">
+      <i style="margin-right: 8px; vertical-align: middle;" data-feather="book"></i>Docs
+    </a>
+  </div>
+
+  <main>
+    <div class="card">
+      <div class="icon"><i data-feather="globe"></i></div>
+      <div class="content">
+        <h2>Your IP</h2>
+        <p id="user-ip">Fetching...</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="icon"><i data-feather="calendar"></i></div>
+      <div class="content">
+        <h2>Today Requests</h2>
+        <p><%= todayRequests %></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="icon"><i data-feather="trending-up"></i></div>
+      <div class="content">
+        <h2>Total Requests</h2>
+        <p><%= totalRequests %></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="icon"><i data-feather="battery"></i></div>
+      <div class="content">
+        <h2>Your Battery</h2>
+        <p id="battery-status">Fetching...</p>
+      </div>
+    </div>
+    <div class="garis"></div>
+    <div class="server">
+      <p>Server Information</p>
+    </div>
+    <div class="card">
+      <div class="icon"><i data-feather="server"></i></div>
+      <div class="content">
+        <h2>Platform</h2>
+        <p id="platform-info"><%= platform %></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="icon"><i data-feather="cpu"></i></div>
+      <div class="content">
+        <h2>Processor</h2>
+        <p id="processor-info"><%= cpu %></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="icon"><i data-feather="activity"></i></div>
+      <div class="content">
+        <h2>Uptime</h2>
+        <p id="uptime-info"><%= uptime %></p>
+      </div>
+    </div>
+   <div class="garis"></div>
+    <div class="tos">
+      <div class="card-tos">
+        <div class="tose">
+          <h1>Terms of Service</h1>
+          <ul>
+            <li>Avoid spamming or flooding requests.</li>
+            <li>DDoS attacks are prohibited.</li>
+            <li>Use the API according to its intended purpose.</li>
+            <li>The owner is not responsible for any risks arising from the use of this API.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="kontake">
+      <div class="card-kontake">
+        <i onclick="git()" data-feather="github"></i>
+        <i onclick="efbe()" data-feather="facebook"></i>
+        <i onclick="igeh()" data-feather="instagram"></i>
+        <i onclick="mail()" data-feather="mail"></i>
+      </div>
+    </div>
+    
+    <div class="garis"></div>
+    
+    
+    <div class="footer">
+      <p>Made With ♥️ by Feri Pratama</p>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script src="/js/dash.js"></script>
+  <script src="/js/sc.js"></script>
+</body>
+</html>

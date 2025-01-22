@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" class="notranslate">
+<head>
+  <meta name="google" content="notranslate">
+  <meta charset="UTF-8">
+  <meta name="description" content="FeriontAPI is a Free Downloader API">
+  <meta name="keywords" content="FeriontAPI, API, web services, fast API", "Free API", "Downloader API">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://api.febrita.biz.id">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="feriontAPI Free RestAPI">
+  <meta property="og:description" content="FeriontAPI is a Free Downloader API, Search API, etc">
+  <meta property="og:image" content="https://example.com/image.jpg">
+  <title>FeriontAPI - Free APi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&family=DM+Serif+Text:ital@0;1&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bona+Nova:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">FeriontAPI</div>
+      <i onclick="dash()" data-feather="home" style="color: rgba(166,174,182,0.966);"></i>
+<!--       <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div> -->
+    </div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <a href="#"> Get Started</a>
+    <a href="#">Documentation</a>
+  </div>
+
+  <section class="landing">
+    <div>
+      <h2>Welcome to <span class="api">FeriontAPI</span></h2>
+      <p>We offer free API services without requiring login to make it easier for you.</p>
+      <p>"Create powerful apps with speed in mind, FeriontAPI will help you unwind!"</p>
+      <div class="stats">
+  <div class="stat">
+    <p tdyReq=<%= todayRequests %> class="number" id="todayReq">0</p>
+    <p class="description">Today Request</p>
+  </div>
+  <div class="stat">
+    <p class="number"><%= totalRequests %></p>
+    <p class="description">Total Requests</p>
+  </div>
+</div>
+      <div class="buttons">
+         <button onclick="dash()"> <i data-feather="layout" style="vertical-align: middle; margin-right: 6px; font-size: 0.5em;"></i>Dashboard</button>
+        <button onclick="docs()" ><i data-feather="book" style="vertical-align: middle; margin-right: 6px"></i>Documentation</button>
+      </div>
+    </div>
+  </section>
+  <div class="card-container">
+  <div class="card">
+    <div class="content">
+      <h2>What is <span class="judul1">FeriontAPI </span>?</h2>
+      <p>
+        FeriontAPI is a high-performance, secure, and scalable API designed to provide fast and reliable services. Hosted on fast and secure servers, it offers global reach, flexible integration, and developer-friendly tools to seamlessly power your applications.
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="content">
+      <h2>Why Choose <span class="judul1">FeriontAPI</span> ?</h2>
+      <p>
+        FeriontAPI provides fast, secure, and reliable API solutions, designed to ensure your applications run smoothly. With the latest technology and global infrastructure, FeriontAPI offers flexibility and ease of integration, making it the perfect choice for your API needs.
+      </p>
+    </div>
+  </div>
+  
+    <div class="card">
+    <div class="content">
+      <h2>How does <span class="judul1">FeriontAPI</span> Work?</h2>
+      <p>
+        FeriontAPI works by combining fast response times, robust security protocols, and scalable architecture. Hosted on fast and secure servers, it leverages global infrastructure, developer-friendly tools, and flexible integration to ensure seamless and efficient API performance for your applications.
+      </p>
+    </div>
+  </div>
+</div><div class="container-fitur">
+  <!-- Card 1 -->
+  <div class="card-container-fitur">
+    <i class="icon" data-feather="server"></i>
+    <h2 class="judul">Super Fast Server</h2>
+    <p>FeriontAPI leverages cutting-edge server technology to handle thousands of requests per second. Its optimized architecture ensures lightning-fast responses, even during peak traffic conditions.</p>
+  </div>
+  
+  <!-- Card 2 -->
+  <div class="card-container-fitur">
+    <i class="icon" data-feather="layers"></i>
+    <h2 class="judul">Scalable Architecture</h2>
+    <p>Built for growth, FeriontAPI can easily integrate with small and large applications alike. Its elastic infrastructure allows seamless scaling up or down, making it ideal for startups and enterprises.</p>
+  </div>
+  
+    <!-- Card 3 -->
+  <div class="card-container-fitur">
+    <i class="icon" data-feather="file-text"></i>
+    <h2 class="judul">Comprehensive Documentation</h2>
+    <p>FeriontAPI provides extensive and user-friendly documentation that simplifies integration. Developers of all skill levels can quickly understand and use the API without a steep learning curve.</p>
+  </div>
+  
+      <!-- Card 4 -->
+  <div class="card-container-fitur">
+    <i class="icon" data-feather="tool"></i>
+    <h2 class="judul">Regular Maintenance and Updates</h2>
+    <p>With frequent updates, FeriontAPI consistently delivers new features, fixes bugs, and enhances performance. A dedicated maintenance team ensures the API remains up-to-date and compatible with the latest technologies.</p>
+  </div>
+</div>
+<div class="garis"></div>
+
+  <div class="container-kontak">
+    <div class="wm">
+      <h2>FeriontAPI</h2>
+    </div>
+    <div class="grup-wm">
+      <div class="kontake">
+        <h3>Follow Us</h3>
+        <a href="https://github.com/FerryVication">GitHub</a>
+        <a href="https://facebook.com/smart.danie.e">Facebook</a>
+        <a href="https://instagram.com/ferdev.me">Instagram</a>
+      </div>
+      <div class="followe">
+        <h3>Contact</h3>
+        <a href="mailto:support@ferry.web.id">Email</a>
+        <a href="https://wa.me/6281548330349?text=.owner">WhatsApp</a>
+      </div>
+    </div>
+  </div>
+  <div class="garis"></div>
+  <div class="alay">
+    <p>Made With ♥️ by Feri Pratama</p>
+  </div>
+  <div class="container-footer">
+    <footer>
+      <p>&copy; 2025 <span class="foot">FeriontAPI.</span> All right reserved. | <a class="ling" href="github.com/FerryVication">Feri Pratama</a></p>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script src="/js/sc.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif; /* Gunakan font Poppins */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #121212; /* Background gelap */
+  color: #f0f0f0; /* Teks terang */
+  text-align: center;
+}
+
+.container {
+  max-width: 600px;
+  padding: 20px;
+  background: #1e1e1e; /* Warna latar belakang elemen */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Bayangan lebih gelap */
+  border-radius: 8px;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: 600; /* Teks lebih tebal */
+  color: #ff9800; /* Warna oranye untuk judul */
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  font-weight: 300; /* Teks lebih ringan */
+  color: #e0e0e0; /* Warna teks lebih cerah */
+}
+
+.contact {
+  margin-top: 20px;
+  font-size: 0.9em;
+  font-weight: 400; /* Berat font sedang */
+  color: #bdbdbd; /* Warna teks kontak */
+}
+
+.contact a {
+  color: #ff9800; /* Warna oranye untuk link */
+  text-decoration: none;
+}
+
+.contact a:hover {
+  text-decoration: underline;
+}

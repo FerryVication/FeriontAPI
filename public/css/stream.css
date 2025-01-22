@@ -1,0 +1,109 @@
+body {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    background-color: #2e2e2e;
+    color: white;
+}
+.header {
+    text-align: left;
+    margin-left: 10px;
+}
+.container {
+    max-width: 800px;
+    margin: 5px auto;
+    background: #3c3c3c;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
+}
+.container .req {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+}
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.form-group input {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #555;
+    background-color: #444;
+    color: white;
+}
+.form-group input:focus {
+    outline: none;
+    border-color: #3498db;
+    background-color: #333;
+}
+.form-group button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.form-group button:hover {
+    background-color: #45a049;
+}
+.warning {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ff4d4d;
+    color: white;
+    font-size: 14px;
+    border-radius: 8px;
+    text-align: center;
+}
+.tips {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #1ea4e5;
+    color: white;
+    font-size: 14px;
+    border-radius: 8px;
+    text-align: center;
+}
+.searching {
+    display: none;
+    text-align: center;
+    color: #3498db;
+    font-size: 16px;
+    margin-top: 10px;
+}
+.card {
+    background-color: #555;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.card h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+.card img,
+.card video {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.card button {
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

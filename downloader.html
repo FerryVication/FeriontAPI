@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coolikiawans</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            font-family: "DM Serif Text", serif;
+            font-weight: 400;
+            font-style: normal;
+            margin: 0;
+            padding: 0;
+            background-color: #1e26e5;
+            color: white;
+        }
+        .header {
+          text-align: left;
+          margin-left: 10px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 5px auto;
+            background: #3c3c3c;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
+        }
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-group input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #555;
+            background-color: #444;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: #3498db;
+            background-color: #333;
+        }
+        .form-group button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+        .warning {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #ff4d4d;
+            color: white;
+            font-size: 14px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .tips {
+          margin-top: 10px;
+          padding: 10px;
+          background-color: #1ea4e5;
+          color: white;
+          font-size: 14px;
+          border-radius: 8px;
+          text-align: center;
+        }
+        .searching {
+            display: none;
+            text-align: center;
+            color: #3498db;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .card {
+            background-color: #555;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .card h3 {
+            margin: 0 0 10px;
+            font-size: 18px;
+        }
+        .card img,
+        .card video {
+            width: 100%;
+            height: auto;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .card button {
+            padding: 8px 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .footer {
+          margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Coolikiawans</h1>
+  </div>
+    <div class="container">
+      <div class="data">
+        <p>Today Req :</p>
+      </div>
+      <br>
+        <div class="form-group">
+            <input type="text" id="searchInput" placeholder="Masukkan kata kunci...">
+            <button id="searchButton">Cari</button>
+        </div>
+        <div id="searching" class="searching">Sedang Mencari...</div>
+        <div id="results"></div>
+        <div class="warning">
+            <strong>PERINGATAN!</strong><br>
+            Situs ini hanya boleh diakses oleh usia <strong>18+</strong>.<br>
+            Konten yang tersedia tidak cocok untuk anak-anak.<br>
+            <strong>Dosa ditanggung pengguna! Dengan menggunakan layanan ini, anda bertanggung jawab penuh atas segala risiko yang timbul.</strong>
+        </div>
+        <div class="tips">
+          <strong>Perhatian !</strong><br>
+          Jika Video yang Kalian Cari Tidak Muncul atau Tidak bisa diPutar, Silahkan Kalian Mode Pesawat Dulu Selama 30 Detik Lalu Coba Refresh dan Cari Lagi!
+        </div>
+    </div>
+    <script>
+        // Check if the user has accepted the terms of service before
+        if (!localStorage.getItem("termsAcceptedd")) {
+            // Show Terms of Service popup if not accepted
+            Swal.fire({
+                title: 'Perhatian!',
+                text: "Dengan menggunakan layanan ini, anda bertanggung jawab penuh atas segala risiko yang timbul, pembuat situs tidak bertanggung jawab jika suatu saat terjadi sesuatu. Situs ini hanya boleh diakses oleh pengguna dengan usia 18+ dan konten yang disediakan tidak cocok untuk anak-anak.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Setuju',
+                cancelButtonText: 'Tidak Setuju'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire({
+                    title: 'Terima Kasih!',
+                    text: 'Anda Telah Menyetujui Syarat Penggunaan dengan Tanggung Jawab Penuh',
+                    icon: 'success'
+                  });
+                    // Store in localStorage so it won't show again
+                    localStorage.setItem("termsAccepted", "true");
+                } else {
+                    // Redirect user if they do not agree
+                    window.location.href = "https://api.febrita.biz.id"; // You can redirect to another page
+                }
+            });
+        }
+
+        document.getElementById("searchButton").addEventListener("click", async function () {
+            const query = document.getElementById("searchInput").value;
+            const searchingDiv = document.getElementById("searching");
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = ''; // Clear previous results
+            searchingDiv.style.display = 'none'; // Hide searching text if input is empty
+
+            if (query.trim() === '') {
+                alertPopUp('Masukkan kata kunci terlebih dahulu!');
+                return;
+            }
+
+            // Show "Sedang Mencari..." text
+            searchingDiv.style.display = 'block';
+
+            try {
+              const response = await axios.get(`https://api.febrita.biz.id/tools/xnxxsearch?text=${query}`, {
+              proxy: {
+                host: '91.222.113.175',
+                port: 5678
+              }
+              });
+
+                // Data JSON sudah tersedia langsung dari `response.data`
+                const data = response.data;
+                
+
+                // Hide "Sedang Mencari..." text after response
+                searchingDiv.style.display = 'none';
+
+                if (data && data.message.success && data.message.data) {
+                    for (const item of data.message.data) {
+                        const card = document.createElement("div");
+                        card.classList.add("card");
+
+                        const title = document.createElement("h3");
+                        title.textContent = item.title || "No Title Available";
+                        card.appendChild(title);
+
+                        // Fetch second API for thumbnail
+                        const videoResponse = await axios.get(`https://api.febrita.biz.id/downloader/xnxx?link=${item.link}`, {
+                    proxy: {
+                      host: '91.222.113.175',
+                      port: 5678
+                    }
+                    });
+
+                // Data JSON sudah tersedia langsung dari `response.data`
+                const videoData = videoResponse.data;
+                        //const videoResponse = await fetch(`http://server.ferdev.my.id:6789/xnxx/down/v2?link=${item.link}`);
+                        //const videoData = await videoResponse.json();
+                        const thumbnailUrl = videoData.message.data.image;
+
+                        // Add thumbnail
+                        const thumbnail = document.createElement("img");
+                        thumbnail.src = thumbnailUrl || "https://via.placeholder.com/150";
+                        card.appendChild(thumbnail);
+
+                        const viewButton = document.createElement("button");
+                        viewButton.textContent = "Lihat Video";
+                        viewButton.addEventListener("click", () => {
+                            const videoUrl = videoData.message.data.files.low;
+                            const video = document.createElement("video");
+                            video.controls = true;
+                            video.src = videoUrl;
+                            card.replaceChild(video, thumbnail); // Replace thumbnail with video
+                        });
+                        card.appendChild(viewButton);
+
+                        resultsDiv.appendChild(card);
+                    }
+                } else {
+                    resultsDiv.innerHTML = '<p>Tidak ada hasil ditemukan.</p>';
+                }
+            } catch (error) {
+                searchingDiv.style.display = 'none';
+                alertPopUp('Terjadi kesalahan, Nyalakan Mode Pesawat Beberapa Detik Lalu Coba Lagi!');
+                console.log(error);
+            }
+        });
+        async function alertPopUp(teks) {
+          Swal.fire({
+            title: "Ooopsss....",
+            text: teks,
+            icon: "error"
+          });
+        }
+    </script>
+</body>
+</html>

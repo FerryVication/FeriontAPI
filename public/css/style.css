@@ -1,0 +1,499 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "DM Serif Text", serif;
+  font-weight: 400;
+  font-style: normal;
+  scroll-behavior: smooth;
+}
+
+body {
+  line-height: 1.6;
+  color: #333;
+  background: linear-gradient(45deg, #00203f, rgb(1,13,32), #000000);
+  overflow-x: hidden;
+}
+
+header {
+  position: fixed;
+  top: 15px; /* Atur jarak dari atas */
+  left: 10px; /* Jarak dari sisi kiri */
+  right: 10px; /* Jarak dari sisi kanan */
+  margin: 0 auto; /* Menengahkan header */
+  width: auto; /* Akan menyesuaikan jarak left dan right */
+  max-width: 1200px; /* Maksimal lebar header */
+  /* background: linear-gradient(45deg, #00203f, rgb(1,13,32), rgba(10,35,58,0.966)); */
+  background: linear-gradient(45deg, #00203f, rgb(1, 13, 32), rgba(10, 35, 58, 0.966));
+  backdrop-filter: blur(20px); /* Efek blur pada background */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  border: 1px solid  rgba(152,161,170,0.966);
+  z-index: 10000;
+  padding: 10px 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container .logo {
+  font-family: Times New Roman;
+  font-size: 1.3em;
+}
+
+.logo, .content .judul1{
+  font-size: 1.8em;
+  font-weight: bold;
+  background: -webkit-linear-gradient(left, #2196f3, #8e24aa, #64b5f6);
+  background: -moz-linear-gradient(left, #2196f3, #8e24aa, #64b5f6);
+  background: -o-linear-gradient(left, #2196f3, #8e24aa, #64b5f6);
+  background: linear-gradient(to right, #2196f3, #8e24aa, #64b5f6);
+  background-size: 500%; /* Ukuran lebih besar agar animasi terlihat */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 10s ease-in infinite;
+}
+
+.landing .api {
+  font-weight: bold;
+  background: -webkit-linear-gradient(left, #2196f3, #8e24aa, #64b5f6);
+  background: -moz-linear-gradient(left, #2196f3, #8e24aa, #64b5f6);
+  background: -o-linear-gradient(left, #2196f3, #8e24aa, #64b5f6);
+  background: linear-gradient(to right, #2196f3, #8e24aa, #64b5f6);
+  background-size: 500%; /* Ukuran lebih besar agar animasi terlihat */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 6s ease-in infinite;
+}
+
+.hamburger {
+  cursor: pointer;
+  width: 30px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger span {
+  background: rgb(146,141,141);
+  height: 4px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(7px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-7px);
+}
+
+.sidebar {
+  position: fixed;
+  top: 90px;
+  left: -100%;
+  width: 45%;
+  height: 20%;
+  background: linear-gradient(45deg, #00203f, rgb(1,13,32), #000000);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 1px solid rgb(146,141,141);
+  z-index: 2000;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2em;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: color 0.3s;
+  text-align: center;
+  border-bottom: 2px solid #fff;
+  padding: 10px 10px;
+}
+
+.sidebar a:last-child {
+  border-bottom: none;
+}
+
+.sidebar a:hover {
+  color: #4CAF50;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes textFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes textFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes textFromSides {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes buttonFromBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section.landing {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(45deg, rgb(9, 1, 141), rgb(1, 13, 32), rgb(13, 7, 113));
+  background-size: 400% 400%;
+  animation: gradientMove 10s ease-in-out infinite;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.landing h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  transform: translateY(-50px);
+  animation: textFromTop 1.3s forwards;
+  font-weight: bold;
+  color: #f8f8f8;
+}
+
+.stats {
+  display: flex;
+  justify-content: center; /* Center alignment */
+  margin: 20px 0;
+  gap: 15px; /* Jarak antar stats lebih rapat */
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat .number {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff;
+}
+
+.stat .description {
+  font-size: 0.9em;
+  color: #ccc;
+}
+
+.landing p {
+  font-size: 0.8em;
+  color: #f8f8f8;
+  margin-bottom: 2px;
+  font-family: "Poppins", serif;
+  font-weight: 300;
+  font-style: normal;
+  opacity: 0;
+  transform: translateX(-100px);
+  animation: textFromSides 1.5s forwards;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: buttonFromBottom 1s forwards;
+  animation-delay: 1s;
+}
+
+.buttons button {
+  background: rgb(48, 31, 130);
+  color: #ffffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 0.8em;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.3s ease;
+}
+
+.buttons button:hover {
+  background: rgba(7, 44, 79, 0.966);
+}
+
+.content h2 {
+  color: white;
+  padding: 25px;
+  opacity: 0;
+  transform: translateX(-100px);
+  animation: textFromSides 1.5s forwards;
+  padding-bottom: 0.5px;
+}
+
+.content .judul1 {
+  font-size: 1.1em;
+}
+
+.content p {
+  padding: 20px;
+  margin-top: 1px;
+  text-indent: 10px;
+  color: #fff;
+  margin-bottom: 0.5px;
+}
+
+.card-container {
+  display: flex;
+  margin-top: 10px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  background: linear-gradient(45deg, #00203f, rgb(1, 13, 32), rgba(10, 35, 58, 0.966));
+  color: #f8f8f8;
+  padding: 20px;
+  border-radius: 8px;
+  opacity: 0;
+  font-family: 'Roboto';
+  font-weight: normal;
+  font-style: normal;
+  transform: translateY(50px);
+  transition: opacity 1.5s ease-in, transform 0.5s ease-in;
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mengatur padding dan margin untuk container fitur */
+.container-fitur {
+  display: flex;
+  margin-top: 50px;
+  flex-direction: column;
+  gap: 50px;
+  padding-top: 50px;
+  padding: 20px;
+  color: #f8f8f8;
+}
+
+.container-fitur .card-container-fitur p {
+  text-indent: 10px;
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+.container-fitur .card-container-fitur .icon {
+  opacity: 0;
+  transform: translateX(-100%);
+  animation: none;
+}
+
+.container-fitur .card-container-fitur .icon.visible {
+  animation: slideIn 0.5s ease-in forwards;
+}
+
+.container-fitur .card-container-fitur .icon.hidden {
+  animation: slideOut 0.5s ease-out forwards;
+}
+
+.container-fitur .card-container-fitur .judul {
+  opacity: 0;
+  transform: translateX(-100%);
+  animation: none;
+}
+
+.container-fitur .card-container-fitur .judul.visible {
+  animation: slideIn 0.8s ease forwards;
+}
+
+.container-fitur .card-container-fitur .judul.hidden {
+  animation: slideOut 0.8s ease-in forwards;
+}
+
+.container-fitur .card-container-fitur p {
+  opacity: 0;
+  transform: translateX(-100%);
+  animation: none;
+}
+
+.container-fitur .card-container-fitur p.visible {
+  animation: slideIn 1s ease forwards;
+}
+
+.container-fitur .card-container-fitur p.hidden {
+  animation: slideOut 1s ease forwards;
+}
+
+.container-kontak {
+  color: #f8f8f8;
+  margin-top: 10px;
+  padding: 20px;
+  font-size: 1.3em;
+}
+
+.grup-wm {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.9em;
+}
+
+.kontake, .follow-us {
+  margin: 0;
+}
+
+.grup-wm a {
+  display: block;
+  margin: 5px 0;
+}
+
+.container-kontak h3 {
+  margin-top: 10px;
+  font-size: 1em;
+}
+
+.container-kontak a {
+  font-size: 0.8em;
+  color: rgba(102,111,119,0.966);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.container-footer {
+  background: rgba(5,27,49,0.966);
+  color: rgba(157,165,173,0.966);
+  margin-top: 50px;
+  padding: 20px;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.container-footer .foot, .container-kontak .wm {
+  font-size: 0.9em;
+  font-weight: bold;
+  background: -webkit-linear-gradient(left, #2196f3, #8e24aa, #64b5f6);
+  background: -moz-linear-gradient(left, #2196f3, #8e24aa, #64b5f6);
+  background: -o-linear-gradient(left, #2196f3, #8e24aa, #64b5f6);
+  background: linear-gradient(to right, #2196f3, #8e24aa, #64b5f6);
+  background-size: 500%; /* Ukuran lebih besar agar animasi terlihat */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 10s ease-in infinite;
+}
+
+.container-footer .ling {
+  color: rgba(82,163,243,0.966);
+  text-decoration: none;
+}
+
+.alay p {
+  text-align: center;
+  font-size: 0.6em;
+  color: rgba(152,161,170,0.966);
+}
+
+.garis {
+  width: 90%;
+  height: 1px;
+  background-color: rgba(152,161,170,0.966);
+  margin: 20px auto;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}

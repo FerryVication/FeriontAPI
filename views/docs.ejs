@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FeriontAPI - Documentation</title>
+  <link rel="stylesheet" href="/css/docs.css"/>
+</head>
+<body>
+    <header>
+    <div class="container-logo">
+      <div class="logo">FeriontAPI</div>
+<!--       <i onclick="dash()" data-feather="home" style="color: rgba(166,174,182,0.966);"></i> -->
+       <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <a href="/"> <i style="margin-right: 8px; vertical-align: middle;" data-feather="home"></i>Home</a>
+    <a href="/docs"> <i style="margin-right: 8px; vertical-align: middle; size: 1px;" data-feather="book"></i>Docs</a>
+  </div>
+  <main>
+    <div class="container">  
+    <div class="dropdown-container">
+  <label for="server-dropdown" class="dropdown-label">Pilih Server:</label>
+  <select id="server-dropdown" class="server">
+    <option value="server1">api.febrita.biz.id</option>
+  </select>
+</div>
+        <!-- Dropdown 1 -->
+        <div class="dropdown">
+            <h3>Count API</h3>
+            <button class="dropdown-title" onclick="toggleDropdown(1)">
+                GET /count/create?sites=
+                <span class="arrow" id="arrow-1"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-1">
+                <p><strong>Deskripsi:</strong> Mendaftarkan situs baru sebagai key</p>
+                <div class="form-group">
+                    <label for="input-1">/count/create?sites=</label>
+                    <input id="input-1" type="text" placeholder="Your Site / Key" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/count/create?sites=', 'input-1', 'response-1')">Try It!</button>
+                <h5>Response :</h5>
+                <div class="response" id="response-1"></div>
+            </div>
+        </div>
+
+        <!-- Dropdown 2 -->
+        <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(2)">
+                GET /count/view?sites=
+                <span class="arrow" id="arrow-2"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-2">
+                <p><strong>Deskripsi:</strong> Melihat data dari situs yang didaftarkan.</p>
+                <div class="form-group">
+                    <label for="input-2">/count/view?sites=</label>
+                    <input id="input-2" type="text" placeholder="Your Site / Key" value="" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/count/view?sites=', 'input-2', 'response-2')">Try It!</button>
+                <h5>Response :</h5>
+                <div class="response" id="response-2"></div>
+            </div>
+        </div>
+        <!-- Dropdown 3 -->
+        <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(3)">
+                GET /count/hit?sites=
+                <span class="arrow" id="arrow-3"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-3">
+                <p><strong>Deskripsi:</strong> menambahkan hit ke key yang telah dibuat</p>
+                <div class="form-group">
+                    <label for="input-3"> /count/hit?sites= </label>
+                    <input id="input-3" type="text" placeholder="Your Site / Key" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/count/hit?sites=', 'input-3', 'response-3')">Try It!</button>
+                <h3>Response :</h3>
+                <div class="response" id="response-3"></div>
+            </div>
+        </div>
+        <!-- Downloader API -->
+          <div class="dropdown">
+            <h3>Downloader API</h3>
+            <button class="dropdown-title" onclick="toggleDropdown(4)">
+                GET /downloader/instagram?url=
+                <span class="arrow" id="arrow-4"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-4">
+                <p><strong>Deskripsi:</strong> Download video dari instagram menggunakan link</p>
+                <div class="form-group">
+                    <label for="input-4">/downloader/instagram?url=</label>
+                    <input id="input-4" type="text" placeholder="Link From Instagram" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/downloader/instagram?url=', 'input-4', 'response-4')">Try It!</button>
+                <h5>Response:</h5>
+                <pre class="response" id="response-4"></pre>
+            </div>
+        </div>
+        <!-- Dropdown 5 -->
+         <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(5)">
+                GET /downloader/tiktok?url=
+                <span class="arrow" id="arrow-5"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-5">
+                <p><strong>Deskripsi:</strong> Download video dari tiktok menggunakan link</p>
+                <div class="form-group">
+                    <label for="input-5">/downloader/tiktok?url=</label>
+                    <input id="input-5" type="text" placeholder="Link Video Tiktok" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/downloader/tiktok?url=', 'input-5', 'response-5')">Try It!</button>
+                <h5>Response:</h5>
+                <pre class="response" id="response-5"></pre>
+            </div>
+        </div>
+        <!-- Dropdown 6 -->
+         <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(6)">
+                GET /downloader/twitter?url=
+                <span class="arrow" id="arrow-6"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-6">
+                <p><strong>Deskripsi:</strong> Download video dari twitter atau sekarang menjadi X menggunakan link</p>
+                <div class="form-group">
+                    <label for="input-6">/downloader/twitter?url=</label>
+                    <input id="input-6" type="text" placeholder="Link Video Twitter" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/downloader/twitter?url=', 'input-6', 'response-6')">Try It!</button>
+                <h5>Response:</h5>
+                <pre class="response" id="response-6"></pre>
+            </div>
+        </div>
+        <!-- Dropdown 7 -->
+         <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(7)">
+                GET /downloader/youtube?url=
+                <span class="arrow" id="arrow-7"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-7">
+                <p><strong>Deskripsi:</strong> Download video & audio dari youtube menggunakan link</p>
+                <div class="form-group">
+                    <label for="input-7">/downloader/youtube?url=</label>
+                    <input id="input-7" type="text" placeholder="Link Video YouTube" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/downloader/youtube?url=', 'input-7', 'response-7')">Try It!</button>
+                <h5>Response:</h5>
+                <pre class="response" id="response-7"></pre>
+            </div>
+        </div>
+        <!-- Dropdown 8 -->
+         <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(8)">
+                GET /downloader/xnxx?link=
+                <span class="arrow" id="arrow-8"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-8">
+                <p><strong>Deskripsi:</strong> Download video dari situs XNXX menggunakan link</p>
+                <div class="form-group">
+                    <label for="input-8">/downloader/xnxx?link=</label>
+                    <input id="input-8" type="text" placeholder="Link Video Dari Situs XNXX" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/downloader/xnxx?link=', 'input-8', 'response-8')">Try It!</button>
+                <h5>Response:</h5>
+                <pre class="response" id="response-8"></pre>
+            </div>
+        </div>
+        <!-- Dropdown 9 -->
+         <!--<div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(9)">
+                GET /downloader/poop?url=
+                <span class="arrow" id="arrow-9"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-9">
+                <p><strong>Deskripsi:</strong> Download video dari situs poop / dood menggunakan link</p>
+                <div class="form-group">
+                    <label for="input-9">/downloader/poop?url=</label>
+                    <input id="input-9" type="text" placeholder="Link Video Poop / Doos" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/downloader/poop?url=', 'input-9', 'response-9')">Try It!</button>
+                <h5>Response:</h5>
+                <pre class="response" id="response-9"></pre>
+            </div>
+        </div> -->
+        <!-- Tools API -->
+         <div class="dropdown">
+           <h3>Tools API</h3>
+            <button class="dropdown-title" onclick="toggleDropdown(10)">
+                GET /ai/gemini?text=
+                <span class="arrow" id="arrow-10"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-10">
+                <p><strong>Deskripsi:</strong> AI Dari Gemini</p>
+                <div class="form-group">
+                    <label for="input-10">/ai/gemini?text=</label>
+                    <input id="input-10" type="text" placeholder="Your Question" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/ai/gemini?text=', 'input-10', 'response-10')">Try It!</button>
+                <h5>Response:</h5>
+                <pre class="response" id="response-10"></pre>
+            </div>
+        </div>
+        <!-- Dropdown 11 -->
+        <div class="dropdown">
+          <button class="dropdown-title" onclick="toggleDropdown(11)">
+        GET /brat/make?q=
+        <span class="arrow" id="arrow-11"></span>
+    </button>
+    <div class="dropdown-content" id="dropdown-content-11">
+        <p><strong>Deskripsi:</strong> Brat Sticker Maker</p>
+        <div class="form-group">
+            <label for="input-11">/brat/make?q=</label>
+            <input id="input-11" type="text" placeholder="Text!" value="VerBotX" />
+        </div>
+        <button class="try-it-btn" onclick="tryIt('/brat/make?q=', 'input-11', 'response-11')">Try It!</button>
+        <h5>Response:</h5>
+        <pre class="response" id="response-11"></pre>
+
+        <!-- Tempat untuk menampilkan gambar -->
+        <div id="image-response-11" style="display: none; text-align: center;">
+            <img id="response-image-11" src="" alt="Response Image" style="max-width: 100%; height: auto; border-radius: 8px;">
+        </div>
+      </div>
+    </div>
+    <!-- Dropdown 12 -->
+<!--          <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(12)">
+                GET /tools/gempa
+                <span class="arrow" id="arrow-12"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-12">
+                <p><strong>Deskripsi:</strong> Mengetahui Bencana Gempa Terbaru dari BMKG</p>
+                 <div class="form-group">
+                    <label for="input-12">/tools/gempa</label>
+                    <input id="input-12" type="text" placeholder="Gausah diisi Boy!" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/tools/gempa', 'input-12', 'response-12')">Try It!</button>
+                <h5>Response:</h5>
+                <pre class="response" id="response-12"></pre>
+            </div>
+        </div> -->
+        <!-- Dropdown 13 -->
+         <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(13)">
+                GET /tools/xnxxsearch?text=
+                <span class="arrow" id="arrow-13"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-13">
+                <p><strong>Deskripsi:</strong> Search Video Pekob dari XNXX Untuk Mendapatkan Link nya</p>
+                <div class="form-group">
+                    <label for="input-13">/tools/xnxxsearch?text=</label>
+                    <input id="input-13" type="text" placeholder="Ngapain Bang:v" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/tools/xnxxsearch?text=', 'input-13', 'response-13')">Try It!</button>
+                <h5>Response:</h5>
+                <pre class="response" id="response-13"></pre>
+            </div>
+        </div>
+    <div class="garis"></div>
+    <div class="tos">
+      <div class="card-tos">
+        <div class="tose">
+          <h1>Terms of Service</h1>
+          <ul>
+            <li>Avoid spamming or flooding requests.</li>
+            <li>DDoS attacks are prohibited.</li>
+            <li>Use the API according to its intended purpose.</li>
+            <li>The owner is not responsible for any risks arising from the use of this API.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="kontake">
+      <div class="card-kontake">
+        <i data-feather="github"></i>
+        <i data-feather="facebook"></i>
+        <i data-feather="instagram"></i>
+        <i data-feather="mail"></i>
+      </div>
+    </div>
+    <div class="garis"></div>
+    <div class="footer">
+      <p>Made With ♥️ by Feri Pratama</p>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+  <script src="/js/docs.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

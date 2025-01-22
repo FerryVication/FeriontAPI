@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeriontAPI Documentation</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #ecf0f1;
+        }
+        header {
+            background-color: #1abc9c;
+            color: white;
+            padding: 15px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-family: 'Roboto Slab', Times New Roman;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        header p {
+            margin: 5px 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .base-url {
+            background: transparent;
+            padding: 5px;
+            border: 1px solid #1abc9c;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 5px;
+            display: block;
+            margin: 10px 0 50px;
+        }
+        .container {
+            padding: 20px;
+        }
+        .dropdown {
+            margin-bottom: 15px;
+        }
+        .dropdown-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .dropdown-title:hover {
+            background-color: #2980b9;
+        }
+        .dropdown-content {
+            display: none;
+            padding: 20px;
+            background-color: #34495e;
+            border: 1px solid #2c3e50;
+            border-radius: 5px;
+            margin-top: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+            margin-right: 25px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #ecf0f1;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #2c3e50;
+            border-radius: 5px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus {
+            border-color: #1abc9c;
+            outline: none;
+        }.response {
+              margin-top: 10px;
+              background-color: #2c3e50;
+              padding: 10px;
+              border-radius: 5px;
+              font-family: monospace;
+              color: #ecf0f1;
+              white-space: pre-wrap;  /* Membungkus teks agar tidak melampaui batas */
+              word-wrap: break-word;  /* Memastikan kata panjang dapat terputus jika diperlukan */
+              max-height: 300px;  /* Membatasi tinggi respons */
+              overflow-y: auto;  /* Menambahkan scrollbar jika respons terlalu panjang */
+          }
+        .try-it-btn {
+            background-color: #e67e22;
+            border: none;
+            padding: 10px 15px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+            width: 100%;
+        }
+        .try-it-btn:hover {
+            background-color: #d35400;
+        }
+        .arrow {
+            border: solid white;
+            border-width: 0 4px 4px 0;
+            display: inline-block;
+            padding: 4px;
+            transform: rotate(45deg);
+            transition: transform 0.3s;
+        }
+        .arrow.open {
+            transform: rotate(-135deg);
+        }
+        /* Footer */
+      .footer {
+          background: linear-gradient(135deg, #2c3e50, #34495e);
+          color: #ecf0f1;
+          padding: 20px;
+          text-align: center;
+          font-family: Monospace;
+          bottom: 0;
+          font-size: 10px;
+      }
+    </style>
+    <script>
+        function toggleDropdown(id) {
+            const content = document.getElementById(`dropdown-content-${id}`);
+            const arrow = document.getElementById(`arrow-${id}`);
+            const isVisible = content.style.display === "block";
+            content.style.display = isVisible ? "none" : "block";
+            arrow.classList.toggle("open", !isVisible);
+        }
+async function tryIt(endpointBase, inputId, responseId) {
+    const inputValue = document.getElementById(inputId).value;
+    const endpoint = `${endpointBase}${encodeURIComponent(inputValue)}`;
+    const responseContainer = document.getElementById(responseId);
+    const imageContainer = document.getElementById(`image-response-${inputId.split('-')[1]}`);
+    const imageElement = document.getElementById(`response-image-${inputId.split('-')[1]}`);
+    responseContainer.textContent = "Loading...";
+
+    const url = `https://api.febrita.biz.id${endpoint}`;
+    console.log(`Fetching URL: ${url}`);
+
+    try {
+        const response = await fetch(url);
+
+        // Jika respons berupa gambar (Content-Type image/*)
+        if (response.ok && response.headers.get('Content-Type').startsWith('image')) {
+            const blob = await response.blob();
+            const imageUrl = URL.createObjectURL(blob);
+            imageElement.src = imageUrl;
+
+            // Tampilkan gambar
+            if (imageContainer) {
+                imageContainer.style.display = "block";
+            }
+            responseContainer.textContent = ""; // Kosongkan teks respons
+        } else {
+            // Anggap respons berupa JSON
+            const data = await response.json();
+            responseContainer.textContent = JSON.stringify(data, null, 4);
+
+            // Sembunyikan gambar jika respons bukan gambar
+            if (imageContainer) {
+                imageContainer.style.display = "none";
+            }
+        }
+    } catch (error) {
+        console.error(`Failed to fetch from ${url}:`, error);
+        responseContainer.textContent = `Error: ${error.message}`;
+
+        // Sembunyikan gambar jika terjadi error
+        if (imageContainer) {
+            imageContainer.style.display = "none";
+        }
+    }
+}
+        
+    </script>
+</head>
+<body>
+    <header>
+        <h1>FeriontAPI</h1>
+        <p>Version v1.5.5</p>
+    </header>
+    <div class="container">
+        <p class="base-url">BASE URL: api.febrita.biz.id</p>
+        
+        <!-- Dropdown 1 -->
+        <div class="dropdown">
+            <h3>Count API</h3>
+            <button class="dropdown-title" onclick="toggleDropdown(1)">
+                GET /count/create?sites=
+                <span class="arrow" id="arrow-1"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-1">
+                <p><strong>Deskripsi:</strong> Mendaftarkan situs baru sebagai key</p>
+                <div class="form-group">
+                    <label for="input-1">/count/create?sites=</label>
+                    <input id="input-1" type="text" placeholder="Your Site / Key" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/count/create?sites=', 'input-1', 'response-1')">Try It!</button>
+                <h3>Response:</h3>
+                <div class="response" id="response-1"></div>
+            </div>
+        </div>
+
+        <!-- Dropdown 2 -->
+        <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(2)">
+                GET /count/view?sites=
+                <span class="arrow" id="arrow-2"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-2">
+                <p><strong>Deskripsi:</strong> Melihat data dari situs yang didaftarkan.</p>
+                <div class="form-group">
+                    <label for="input-2">/count/view?sites=</label>
+                    <input id="input-2" type="text" placeholder="Your Site / Key" value="" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/count/view?sites=', 'input-2', 'response-2')">Try It!</button>
+                <h3>Response :</h3>
+                <div class="response" id="response-2"></div>
+            </div>
+        </div>
+
+        <!-- Dropdown 3 -->
+        <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(3)">
+                GET /count/hit?sites=
+                <span class="arrow" id="arrow-3"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-3">
+                <p><strong>Deskripsi:</strong> menambahkan hit ke key yang telah dibuat</p>
+                <div class="form-group">
+                    <label for="input-3"> /count/hit?sites= </label>
+                    <input id="input-3" type="text" placeholder="Your Site / Key" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/count/hit?sites=', 'input-3', 'response-3')">Try It!</button>
+                <h3>Response :</h3>
+                <div class="response" id="response-3"></div>
+            </div>
+        </div>
+        <!-- Downloader API -->
+          <div class="dropdown">
+            <h3>Downloader API</h3>
+            <button class="dropdown-title" onclick="toggleDropdown(4)">
+                GET /downloader/instagram?url=
+                <span class="arrow" id="arrow-4"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-4">
+                <p><strong>Deskripsi:</strong> Download video dari instagram menggunakan link</p>
+                <div class="form-group">
+                    <label for="input-4">/downloader/instagram?url=</label>
+                    <input id="input-4" type="text" placeholder="Link From Instagram" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/downloader/instagram?url=', 'input-4', 'response-4')">Try It!</button>
+                <h3>Response:</h3>
+                <pre class="response" id="response-4"></pre>
+            </div>
+        </div>
+        <!-- Dropdown 5 -->
+         <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(5)">
+                GET /downloader/tiktok?url=
+                <span class="arrow" id="arrow-5"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-5">
+                <p><strong>Deskripsi:</strong> Download video dari tiktok menggunakan link</p>
+                <div class="form-group">
+                    <label for="input-5">/downloader/tiktok?url=</label>
+                    <input id="input-5" type="text" placeholder="Link Video Tiktok" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/downloader/tiktok?url=', 'input-5', 'response-5')">Try It!</button>
+                <h3>Response:</h3>
+                <pre class="response" id="response-5"></pre>
+            </div>
+        </div>
+        <!-- Dropdown 6 -->
+         <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(6)">
+                GET /downloader/twitter?url=
+                <span class="arrow" id="arrow-6"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-6">
+                <p><strong>Deskripsi:</strong> Download video dari twitter atau sekarang menjadi X menggunakan link</p>
+                <div class="form-group">
+                    <label for="input-6">/downloader/twitter?url=</label>
+                    <input id="input-6" type="text" placeholder="Link Video Twitter" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/downloader/twitter?url=', 'input-6', 'response-6')">Try It!</button>
+                <h3>Response:</h3>
+                <pre class="response" id="response-6"></pre>
+            </div>
+        </div>
+        <!-- Dropdown 7 -->
+         <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(7)">
+                GET /downloader/youtube?url=
+                <span class="arrow" id="arrow-7"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-7">
+                <p><strong>Deskripsi:</strong> Download video & audio dari youtube menggunakan link</p>
+                <div class="form-group">
+                    <label for="input-7">/downloader/youtube?url=</label>
+                    <input id="input-7" type="text" placeholder="Link Video YouTube" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/downloader/youtube?url=', 'input-7', 'response-7')">Try It!</button>
+                <h3>Response:</h3>
+                <pre class="response" id="response-7"></pre>
+            </div>
+        </div>
+        <!-- Dropdown 8 -->
+         <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(8)">
+                GET /downloader/xnxx?link=
+                <span class="arrow" id="arrow-8"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-8">
+                <p><strong>Deskripsi:</strong> Download video dari situs XNXX menggunakan link</p>
+                <div class="form-group">
+                    <label for="input-8">/downloader/xnxx?link=</label>
+                    <input id="input-8" type="text" placeholder="Link Video Dari Situs XNXX" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/downloader/xnxx?link=', 'input-8', 'response-8')">Try It!</button>
+                <h3>Response:</h3>
+                <pre class="response" id="response-8"></pre>
+            </div>
+        </div>
+        <!-- Dropdown 9 -->
+         <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(9)">
+                GET /downloader/poop?url=
+                <span class="arrow" id="arrow-9"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-9">
+                <p><strong>Deskripsi:</strong> Download video dari situs poop / dood menggunakan link</p>
+                <div class="form-group">
+                    <label for="input-9">/downloader/poop?url=</label>
+                    <input id="input-9" type="text" placeholder="Link Video Poop / Doos" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/downloader/poop?url=', 'input-9', 'response-9')">Try It!</button>
+                <h3>Response:</h3>
+                <pre class="response" id="response-9"></pre>
+            </div>
+        </div>
+        <!-- Tools API -->
+         <div class="dropdown">
+           <h3>Tools API</h3>
+            <button class="dropdown-title" onclick="toggleDropdown(10)">
+                GET /ai/gemini?text=
+                <span class="arrow" id="arrow-10"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-10">
+                <p><strong>Deskripsi:</strong> AI Dari Gemini</p>
+                <div class="form-group">
+                    <label for="input-10">/ai/gemini?text=</label>
+                    <input id="input-10" type="text" placeholder="Your Question" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/ai/gemini?text=', 'input-10', 'response-10')">Try It!</button>
+                <h3>Response:</h3>
+                <pre class="response" id="response-10"></pre>
+            </div>
+        </div>
+        <!-- Dropdown 11 -->
+        <div class="dropdown">
+          <button class="dropdown-title" onclick="toggleDropdown(11)">
+        GET /brat/make?q=
+        <span class="arrow" id="arrow-11"></span>
+    </button>
+    <div class="dropdown-content" id="dropdown-content-11">
+        <p><strong>Deskripsi:</strong> Brat Sticker Maker</p>
+        <div class="form-group">
+            <label for="input-11">/brat/make?q=</label>
+            <input id="input-11" type="text" placeholder="Text!" value="VerBotX" />
+        </div>
+        <button class="try-it-btn" onclick="tryIt('/brat/make?q=', 'input-11', 'response-11')">Try It!</button>
+        <h3>Response:</h3>
+        <pre class="response" id="response-11"></pre>
+
+        <!-- Tempat untuk menampilkan gambar -->
+        <div id="image-response-11" style="display: none; text-align: center;">
+            <img id="response-image-11" src="" alt="Response Image" style="max-width: 100%; height: auto; border-radius: 8px;">
+        </div>
+      </div>
+    </div>
+    <!-- Dropdown 12 -->
+         <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(12)">
+                GET /tools/gempa
+                <span class="arrow" id="arrow-12"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-12">
+                <p><strong>Deskripsi:</strong> Mengetahui Bencana Gempa Terbaru dari BMKG</p>
+                 <div class="form-group">
+                    <label for="input-12">/tools/gempa</label>
+                    <input id="input-12" type="text" placeholder="Gausah diisi Boy!" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/tools/gempa', 'input-12', 'response-12')">Try It!</button>
+                <h3>Response:</h3>
+                <pre class="response" id="response-12"></pre>
+            </div>
+        </div>
+        <!-- Dropdown 13 -->
+         <div class="dropdown">
+            <button class="dropdown-title" onclick="toggleDropdown(13)">
+                GET /tools/xnxxsearch?text=
+                <span class="arrow" id="arrow-13"></span>
+            </button>
+            <div class="dropdown-content" id="dropdown-content-13">
+                <p><strong>Deskripsi:</strong> Search Video Pekob dari XNXX Untuk Mendapatkan Link nya</p>
+                <div class="form-group">
+                    <label for="input-13">/tools/xnxxsearch?text=</label>
+                    <input id="input-13" type="text" placeholder="Ngapain Bang:v" />
+                </div>
+                <button class="try-it-btn" onclick="tryIt('/tools/xnxxsearch?text=', 'input-13', 'response-13')">Try It!</button>
+                <h3>Response:</h3>
+                <pre class="response" id="response-13"></pre>
+            </div>
+        </div>
+    <!-- tutup div container  -->
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+      <p>Made With ♥️ by Feri</p>
+    </div>
+</body>
+</html>

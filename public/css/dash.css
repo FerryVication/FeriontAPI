@@ -1,0 +1,236 @@
+body {
+      line-height: 1.6;
+      color: #333;
+      background: #000; /* Fallback */
+      background: linear-gradient(45deg, #00203f, rgb(1, 13, 32), #000000);
+      overflow-x: hidden;
+      font-family: "DM Serif Text", serif;
+ }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+    header {
+  position: fixed;
+  top: 15px; /* Atur jarak dari atas */
+  left: 10px; /* Jarak dari sisi kiri */
+  right: 10px; /* Jarak dari sisi kanan */
+  margin: 0 auto; /* Menengahkan header */
+  width: auto; /* Akan menyesuaikan jarak left dan right */
+  max-width: 1200px; /* Maksimal lebar header */
+  /* background: linear-gradient(45deg, #00203f, rgb(1,13,32), rgba(10,35,58,0.966)); */
+  background: linear-gradient(45deg, #00203f, rgb(1, 13, 32), rgba(10, 35, 58, 0.966));
+  backdrop-filter: blur(20px); /* Efek blur pada background */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  border: 1px solid  rgba(152,161,170,0.966);
+  z-index: 10000;
+  padding: 10px 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.container .logo {
+  font-family: Times New Roman;
+  font-size: 1em;
+}
+
+.logo {
+  font-size: 1.8em;
+  font-weight: bold;
+  background: -webkit-linear-gradient(left, #2196f3, #8e24aa, #64b5f6);
+  background: -moz-linear-gradient(left, #2196f3, #8e24aa, #64b5f6);
+  background: -o-linear-gradient(left, #2196f3, #8e24aa, #64b5f6);
+  background: linear-gradient(to right, #2196f3, #8e24aa, #64b5f6);
+  background-size: 500%; /* Ukuran lebih besar agar animasi terlihat */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 10s ease-in infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0%; }
+  100% { background-position: 100%; }
+}
+
+.hamburger {
+  cursor: pointer;
+  width: 30px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hamburger span {
+  background: rgb(146,141,141);
+  height: 4px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(7px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-7px);
+}
+
+.sidebar {
+  position: fixed;
+  top: 90px;
+  left: -100%;
+  width: 45%;
+  height: 20%;
+  background: linear-gradient(45deg, #00203f, rgb(1,13,32), #000000);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  border: 1px solid rgb(146,141,141);
+  z-index: 2000;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: white;
+  font-size: 1em;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: color 0.3s;
+  text-align: center;
+  padding: 10px 10px;
+}
+
+.sidebar a:last-child {
+  border-bottom: none;
+}
+
+.sidebar a:hover {
+  color: #4CAF50;
+}
+
+main {
+      margin-top: 100px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+  .card {
+      background: rgba(5,27,49,0.966);
+      border: 1px solid rgba(152,161,170,0.966);
+      border-radius: 8px;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+    }
+
+    .card .icon {
+      font-size: 1.5em;
+      color: #f8f8f8;
+    }
+
+    .card .content {
+      flex: 1;
+      margin-left: 15px;
+    }
+
+    .card h2 {
+      font-size: 0.9em;
+      color: #f8f8f9;
+    }
+
+    .card p {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #f8f8f5;
+    }
+    
+    .garis {
+  width: 90%;
+  height: 1px;
+  background-color: rgba(152,161,170,0.966);
+  margin: 20px auto;
+}
+
+.server {
+  text-align: center;
+  color: #f8f8f8;
+  font-size: 1.4em;
+}
+
+.tos .card-tos {
+      background: rgba(5,27,49,0.966);
+      border: 1px solid rgba(152,161,170,0.966);
+      border-radius: 8px;
+      padding: 15px;
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.9);
+      margin-bottom: 2px;
+    }
+    
+.tos h1 {
+  padding: 20px;
+  color: #f8f8f8;
+  font-size: 0.9em;
+}
+
+.tose ul {
+  padding: 30px;
+  gap: 30px;
+  margin-bottom: 10px;
+}
+
+.tose ul li {
+  margin-bottom: 5px;
+  font-size: 0.9em;
+}
+.card-tos ul {
+  padding: 2px 25px; 
+  margin-top: 5px;
+  color: white;
+  font-size: 0.8em;
+  text-decoration: none;
+}
+
+.kontake .card-kontake {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  color: #f8f8f8;
+  margin-bottom: 2px;
+}
+
+.footer {
+  text-align: center;
+  font-size: 0.7em;
+  color: #f8f8f8;
+}
+
